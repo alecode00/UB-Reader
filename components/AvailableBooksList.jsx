@@ -4,7 +4,7 @@ import "../src/styles/availableBooksList.css";
 import DataContext from "./context/DataContext";
 
 export const AvailableBooksList = () => {
-  const {books,handleBooks,handleSelectBooks} = useContext(DataContext)
+  const { books, handleBooks} = useContext(DataContext);
   useEffect(() => {
     const completeBooks = () => {
       console.log("Este es el library del useEffect:", library);
@@ -36,7 +36,10 @@ export const AvailableBooksList = () => {
           };
         }
       });
-      console.log("Este es el newBooks del handleClick de la availableList:", newBooks);
+      console.log(
+        "Este es el newBooks del handleBookClick de la availableList:",
+        newBooks
+      );
       handleBooks(newBooks);
     }
   };
@@ -53,7 +56,6 @@ export const AvailableBooksList = () => {
   
     
   }, [books.map(book=>{return book.added})]) */
-  
 
   return (
     <section id="enableBooksSection">
@@ -63,7 +65,7 @@ export const AvailableBooksList = () => {
         </header>
         <ul id="enableBooksList">
           {books.map((book) => (
-            <li key={book.id}>
+            <li key={book.id} className="availableListElement">
               <img
                 className="booksImage"
                 src={book.cover}
