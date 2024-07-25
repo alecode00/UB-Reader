@@ -3,12 +3,21 @@ import "../src/styles/readingList.css";
 import DataContext from "./context/DataContext";
 
 export const ReadingList = () => {
-  const { books, handleBooks } = useContext(DataContext);
+  const {
+    books,
+    handleBooks,
+    availableBooksCounter,
+    handleSetAvailableBooksCounter,
+    readingListCounter,
+    handleSetReadingListCounter,
+  } = useContext(DataContext);
 
   const handleUncheckBook = (id) => {
     if (books[id].added) {
       const newBooks = books.map((book) => {
         if (book.id === id) {
+          handleSetAvailableBooksCounter(availableBooksCounter + 1);
+          handleSetReadingListCounter(readingListCounter - 1);
           return {
             ...book,
             added: false,
