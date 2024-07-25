@@ -1,10 +1,10 @@
 import library from "../public/library.json";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import "../src/styles/availableBooksList.css";
+import DataContext from "./context/DataContext";
 
 export const AvailableBooksList = () => {
-  const [books, setBooks] = useState([]);
-
+  const {books,handleBooks,handleSelectBooks} = useContext(DataContext)
   useEffect(() => {
     const completeBooks = () => {
       console.log("Este es el library del useEffect:", library);
@@ -15,7 +15,7 @@ export const AvailableBooksList = () => {
         };
       });
       console.log("Este es el newBooks del useEffect:", newBooks);
-      setBooks(newBooks);
+      handleBooks(newBooks);
     };
     completeBooks();
   }, []);
@@ -24,7 +24,7 @@ export const AvailableBooksList = () => {
     if (books[id].added) {
       return;
     } else {
-      const newBooks = selectBooks.map((book) => {//Me quede aqui meditando si hacer contexto---------------------------------------------
+      const newBooks = books.map((book) => {
         if (book.id === id) {
           return {
             ...book,
@@ -36,10 +36,24 @@ export const AvailableBooksList = () => {
           };
         }
       });
-      console.log("Este es el newBooks del useEffect:", newBooks);
-      setSelectBooks(newBooks);
+      console.log("Este es el newBooks del handleClick de la availableList:", newBooks);
+      handleBooks(newBooks);
     }
   };
+
+  /* useEffect(() => {
+    const newSelectBooks = books.map(book=>{
+      if(book.added){
+        return book;
+      }else{
+        return
+      }
+    })
+    handleSelectBooks(newSelectBooks)
+  
+    
+  }, [books.map(book=>{return book.added})]) */
+  
 
   return (
     <section id="enableBooksSection">
@@ -48,13 +62,13 @@ export const AvailableBooksList = () => {
           <h2>Lista de Libros Disponibles</h2>
         </header>
         <ul id="enableBooksList">
-          {books.map((book, item) => (
+          {books.map((book) => (
             <li key={book.id}>
               <img
                 className="booksImage"
                 src={book.cover}
                 alt={book.title}
-                onClick={() => handleBookClick(item)}
+                onClick={() => handleBookClick(book.id)}
               />
             </li>
           ))}
