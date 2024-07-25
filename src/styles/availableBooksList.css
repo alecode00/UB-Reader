@@ -1,9 +1,9 @@
-.booksImage {
-  width: 10vw;
+.availableBooksImage {
+  width: 12vw;
   height: 22vh;
 }
 #enableBooksSection {
-  width: 68vw;
+  width: 58vw;
 }
 #enableBooksList {
   padding: 5%;
@@ -20,5 +20,6 @@ header {
   width: 25%;
   height: 50%;
   justify-content: center;
+  padding-top: 4%;
 }
 

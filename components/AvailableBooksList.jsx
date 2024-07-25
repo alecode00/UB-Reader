@@ -67,7 +67,7 @@ export const AvailableBooksList = () => {
           {books.map((book) => (
             <li key={book.id} className="availableListElement">
               <img
-                className="booksImage"
+                className="availableBooksImage"
                 src={book.cover}
                 alt={book.title}
                 onClick={() => handleBookClick(book.id)}

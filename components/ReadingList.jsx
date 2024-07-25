@@ -66,7 +66,7 @@ export const ReadingList = () => {
                 book.added && (
                   <li key={book.id} className="readingListElement">
                     <img
-                      className="booksImage"
+                      className="readingBooksImage"
                       src={book.cover}
                       alt={book.title}
                       onClick={() => handleUncheckBook(book.id)}
