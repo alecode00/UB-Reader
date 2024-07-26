@@ -22,7 +22,7 @@ export const AvailableBooksList = () => {
     setGenre(e.target.value);
   };
 
-  //Añadir el campo added a los objetos que vienen del archivo .json
+  /* //Añadir el campo added a los objetos que vienen del archivo .json
   useEffect(() => {
     const completeBooks = () => {
       console.log("Este es el library del useEffect:", library);
@@ -36,7 +36,7 @@ export const AvailableBooksList = () => {
       handleBooks(newBooks);
     };
     completeBooks();
-  }, []);
+  }, []); */
 
   useEffect(() => {
     console.log("Entre al useEffect del problema");
