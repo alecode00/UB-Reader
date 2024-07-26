@@ -1,6 +1,6 @@
 .readingBooksImage {
   width: 10vw;
-  height: 22vh;
+  height: 20vh;
 }
 #readingBooksSection {
   background-color: rgb(43, 53, 61);
@@ -37,6 +37,12 @@ header {
   }
   .readingBooksImage {
     width: 15vw;
-    height: 25vh;
+    height: 15vh;
+  }
+}
+@media screen and (max-width: 400px) {
+  .readingBooksImage {
+    width: 15vw;
+    height: 10vh;
   }
 }

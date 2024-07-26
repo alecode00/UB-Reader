@@ -1,11 +1,11 @@
 .availableBooksImageAdded {
   width: 10vw;
-  height: 22vh;
+  height: 20vh;
   opacity: 0.3;
 }
 .availableBooksImageUnAdded {
   width: 10vw;
-  height: 22vh;
+  height: 20vh;
 }
 #enableBooksSection {
   width: 58vw;
@@ -53,12 +53,28 @@ input[type="text"] {
   #enableBooksSection {
     width: 80vw;
   }
+  input[type="text"] {
+    width: 25vw;
+  }
   .availableBooksImageAdded {
     width: 15vw;
-    height: 25vh;
+    height: 15vh;
   }
   .availableBooksImageUnAdded {
     width: 15vw;
-    height: 25vh;
+    height: 15vh;
+  }
+}
+@media screen and (max-width: 400px) {
+  input[type="text"] {
+    width: 40vw;
+  }
+  .availableBooksImageAdded {
+    width: 15vw;
+    height: 10vh;
+  }
+  .availableBooksImageUnAdded {
+    width: 15vw;
+    height: 10vh;
   }
 }
