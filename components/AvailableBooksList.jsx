@@ -1,9 +1,9 @@
-import library from "../public/library.json";
 import { useContext, useEffect, useState } from "react";
 import "../src/styles/availableBooksList.css";
 import DataContext from "./context/DataContext";
 
 export const AvailableBooksList = () => {
+  //Variables que se toman del contexto
   const {
     books,
     handleBooks,
@@ -22,43 +22,23 @@ export const AvailableBooksList = () => {
     setGenre(e.target.value);
   };
 
-  /* //Añadir el campo added a los objetos que vienen del archivo .json
+  //useEffect utilizado para poder tener el contador de libros disponibles teniendo en cuenta el género
   useEffect(() => {
-    const completeBooks = () => {
-      console.log("Este es el library del useEffect:", library);
-      const newBooks = library.map((book) => {
-        return {
-          ...book,
-          added: false,
-        };
-      });
-      console.log("Este es el newBooks del useEffect:", newBooks);
-      handleBooks(newBooks);
-    };
-    completeBooks();
-  }, []); */
-
-  useEffect(() => {
-    console.log("Entre al useEffect del problema");
     let helpCounter = 0;
-    console.log("Este es el genre", genre);
+    //Si no hay género definido se le asigna el contador de libros disponibles
     if (!genre) {
       handleSetAvailableBooksForGenreCounter(availableBooksCounter);
-      console.log("Entre al if de si esta vacio el genre");
     } else {
-      console.log("Entre al else que me dice q si hay genre");
+      //En caso contrario se recorre el arreglo de libros y en caso de coincidir el género actual y a la vez estar disponible, se aumenta en uno el contador.
       books.forEach((book) => {
         if (!book.added && book.genre === genre) {
-          console.log("book: added = ", book.added);
-          console.log("genre = ", genre, "book.genre = ", book.genre);
-
-          console.log("Este libro no esta a;adido y el genre coincide");
           helpCounter++;
-          console.log("Valor de counter", helpCounter);
         }
       });
+      //Al terminar el conteo, se le asigna a la variable que será mostrada el contador con el que se ha estado trabajando
       handleSetAvailableBooksForGenreCounter(helpCounter);
     }
+    //Se tiene como dependencias del useEffect al género y al valor 'added' de cada libro
   }, [
     books.map((book) => {
       return book.added;
@@ -73,7 +53,9 @@ export const AvailableBooksList = () => {
     } else {
       const newBooks = books.map((book) => {
         if (book.id === id) {
+          //Al hacer click en un libro se disminuye el contador de libros disponibles
           handleSetAvailableBooksCounter(availableBooksCounter - 1);
+          //Al hacer click en un libro se aumenta el contador de libros en la lista de lectura
           handleSetReadingListCounter(readingListCounter + 1);
           return {
             ...book,
@@ -85,10 +67,6 @@ export const AvailableBooksList = () => {
           };
         }
       });
-      console.log(
-        "Este es el newBooks del handleBookClick de la availableList:",
-        newBooks
-      );
       handleBooks(newBooks);
     }
   };
@@ -111,7 +89,7 @@ export const AvailableBooksList = () => {
               <option value="Zombies"></option>
               <option value="Terror"></option>
             </datalist>
-            <label htmlFor="genre">Genre</label>
+            <label htmlFor="genre">Género: </label>
             <input
               type="text"
               name="genre"
@@ -121,6 +99,7 @@ export const AvailableBooksList = () => {
           </div>
         </header>
         <ul id="enableBooksList">
+          {/* Renderizado de los libros según el género seleccionado. */}
           {books.map((book) => {
             if (!genre) {
               return (
@@ -145,14 +124,10 @@ export const AvailableBooksList = () => {
                     />
                   </li>
                 );
-              } else {
-                console.log("Libro no mostrado");
               }
             }
           })}
         </ul>
-        {console.log("Esto es books:", books)}
-        {console.log("Esto es genre:", genre)}
       </article>
     </section>
   );
