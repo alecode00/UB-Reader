@@ -3,7 +3,6 @@
   height: 22vh;
 }
 #readingBooksSection {
-  position:sticky;
   background-color: rgb(43, 53, 61);
   border-radius: 5%;
   width: 30vw;
@@ -11,9 +10,10 @@
   overflow-y: scroll;
   border: gray 4px ridge;
 }
-#readingBooksSection::-webkit-scrollbar{
+#readingBooksSection::-webkit-scrollbar {
   display: none;
 }
+
 #readingBooksList {
   padding: 5%;
   margin: 0;
@@ -24,11 +24,19 @@
 header {
   text-align: center;
 }
-.readingListElement{
+.readingListElement {
   display: flex;
   width: 50%;
   height: 50%;
   justify-content: center;
   padding-top: 4%;
 }
-
+@media screen and (max-width: 635px) {
+  #readingBooksSection {
+    width: 80vw;
+  }
+  .readingBooksImage {
+    width: 15vw;
+    height: 25vh;
+  }
+}

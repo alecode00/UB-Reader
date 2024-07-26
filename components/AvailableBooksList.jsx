@@ -21,7 +21,6 @@ export const AvailableBooksList = () => {
   const handleSetGenre = (e) => {
     setGenre(e.target.value);
   };
-  
 
   //useEffect utilizado para poder tener el contador de libros disponibles teniendo en cuenta el género
   useEffect(() => {
@@ -76,8 +75,12 @@ export const AvailableBooksList = () => {
     <section id="enableBooksSection">
       <article>
         <header className="headerContainer">
-          <h1 className="headerContainerItems" id="giantText">{availableBooksCounter} libros disponibles</h1>
-          <p className="headerContainerItems">{readingListCounter} en la lista de lectura</p>
+          <h1 className="headerContainerItems" id="giantText">
+            {availableBooksCounter} libros disponibles
+          </h1>
+          <p className="headerContainerItems">
+            {readingListCounter} en la lista de lectura
+          </p>
           <p className="headerContainerItems">
             {availableBooksForGenreCounter} libros disponibles del género
           </p>
@@ -94,9 +97,9 @@ export const AvailableBooksList = () => {
               name="genre"
               list="genre"
               onChange={handleSetGenre}
-              />
+            />
           </div>
-              {/* <h2>Lista de Libros Disponibles</h2> */}
+          {/* <h2>Lista de Libros Disponibles</h2> */}
         </header>
         <ul id="enableBooksList">
           {/* Renderizado de los libros según el género seleccionado. */}
@@ -105,7 +108,11 @@ export const AvailableBooksList = () => {
               return (
                 <li key={book.id} className="availableListElement">
                   <img
-                    className={book.added? "availableBooksImageAdded":"availableBooksImageUnAdded"}
+                    className={
+                      book.added
+                        ? "availableBooksImageAdded"
+                        : "availableBooksImageUnAdded"
+                    }
                     src={book.cover}
                     alt={book.title}
                     onClick={() => handleBookClick(book.id)}
@@ -117,7 +124,11 @@ export const AvailableBooksList = () => {
                 return (
                   <li key={book.id} className="availableListElement">
                     <img
-                      className={book.added? "availableBooksImageAdded":"availableBooksImageUnAdded"}
+                      className={
+                        book.added
+                          ? "availableBooksImageAdded"
+                          : "availableBooksImageUnAdded"
+                      }
                       src={book.cover}
                       alt={book.title}
                       onClick={() => handleBookClick(book.id)}

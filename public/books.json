@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "added":false,
+    "added": false,
     "title": "El Señor de los Anillos",
     "pages": 1200,
     "genre": "Fantasía",
@@ -16,7 +16,7 @@
   },
   {
     "id": 1,
-    "added":false,
+    "added": false,
     "title": "Juego de Tronos",
     "pages": 694,
     "genre": "Fantasía",
@@ -35,7 +35,7 @@
   },
   {
     "id": 2,
-    "added":false,
+    "added": false,
     "title": "Harry Potter y la piedra filosofal",
     "pages": 223,
     "genre": "Fantasía",
@@ -54,7 +54,7 @@
   },
   {
     "id": 3,
-    "added":false,
+    "added": false,
     "title": "1984",
     "pages": 328,
     "genre": "Ciencia ficción",
@@ -69,7 +69,7 @@
   },
   {
     "id": 4,
-    "added":false,
+    "added": false,
     "title": "Apocalipsis Zombie",
     "pages": 444,
     "genre": "Zombies",
@@ -84,7 +84,7 @@
   },
   {
     "id": 5,
-    "added":false,
+    "added": false,
     "title": "Dune",
     "pages": 412,
     "genre": "Ciencia ficción",
@@ -99,7 +99,7 @@
   },
   {
     "id": 6,
-    "added":false,
+    "added": false,
     "title": "La Guía del Autoestopista Galáctico",
     "pages": 216,
     "genre": "Ciencia ficción",
@@ -117,7 +117,7 @@
   },
   {
     "id": 7,
-    "added":false,
+    "added": false,
     "title": "Neuromante",
     "pages": 271,
     "genre": "Ciencia ficción",
@@ -132,7 +132,7 @@
   },
   {
     "id": 8,
-    "added":false,
+    "added": false,
     "title": "Fahrenheit 451",
     "pages": 249,
     "genre": "Ciencia ficción",
@@ -147,7 +147,7 @@
   },
   {
     "id": 9,
-    "added":false,
+    "added": false,
     "title": "El resplandor",
     "pages": 688,
     "genre": "Terror",
@@ -162,7 +162,7 @@
   },
   {
     "id": 10,
-    "added":false,
+    "added": false,
     "title": "Drácula",
     "pages": 418,
     "genre": "Terror",
@@ -180,7 +180,7 @@
   },
   {
     "id": 11,
-    "added":false,
+    "added": false,
     "title": "Frankenstein",
     "pages": 280,
     "genre": "Terror",
@@ -195,7 +195,7 @@
   },
   {
     "id": 12,
-    "added":false,
+    "added": false,
     "title": "La llamada de Cthulhu",
     "pages": 43,
     "genre": "Terror",

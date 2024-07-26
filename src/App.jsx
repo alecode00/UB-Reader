@@ -4,7 +4,7 @@ import { ReadingList } from "../components/ReadingList";
 
 function App() {
   return (
-    <main>
+    <main className="appContainer">
       <AvailableBooksList />
       <ReadingList />
     </main>

@@ -1,7 +1,7 @@
 .availableBooksImageAdded {
   width: 10vw;
   height: 22vh;
-  opacity: 0.5;
+  opacity: 0.3;
 }
 .availableBooksImageUnAdded {
   width: 10vw;
@@ -23,8 +23,8 @@ header.headerContainer {
   flex-direction: column;
   align-items: flex-start;
 }
-.headerContainerItems{
-  margin-left: 10% ;
+.headerContainerItems {
+  margin-left: 10%;
 }
 .availableListElement {
   display: flex;
@@ -33,19 +33,32 @@ header.headerContainer {
   justify-content: center;
   padding-top: 4%;
 }
-#giantText{
-  font-size:xx-large ;
+#giantText {
+  font-size: xx-large;
 }
-#inputGenre{
+#inputGenre {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-    margin-top: 3%;
+  margin-top: 3%;
 }
-input[type="text"]{
+input[type="text"] {
   background-color: rgb(41, 43, 44);
   color: beige;
   width: 15vw;
   border-radius: 3%;
   border: ridge gray;
+}
+@media screen and (max-width: 635px) {
+  #enableBooksSection {
+    width: 80vw;
+  }
+  .availableBooksImageAdded {
+    width: 15vw;
+    height: 25vh;
+  }
+  .availableBooksImageUnAdded {
+    width: 15vw;
+    height: 25vh;
+  }
 }
