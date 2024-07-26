@@ -3,9 +3,10 @@
   height: 22vh;
 }
 #readingBooksSection {
+  position:sticky;
   background-color: rgb(43, 53, 61);
   border-radius: 5%;
-  width: 35vw;
+  width: 30vw;
   height: 90vh;
   overflow-y: scroll;
   border: gray 4px ridge;

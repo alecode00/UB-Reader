@@ -35,27 +35,27 @@ export const ReadingList = () => {
   };
 
   return (
-      <section id="readingBooksSection">
-        <article>
-          <header>
-            <h2>Lista de Lectura</h2>
-          </header>
-          <ul id="readingBooksList">
-            {books.map(
-              (book) =>
-                book.added && (
-                  <li key={book.id} className="readingListElement">
-                    <img
-                      className="readingBooksImage"
-                      src={book.cover}
-                      alt={book.title}
-                      onClick={() => handleUncheckBook(book.id)}
-                    />
-                  </li>
-                )
-            )}
-          </ul>
-        </article>
-      </section>
+    <section id="readingBooksSection">
+      <article>
+        <header>
+          <h2>Lista de Lectura</h2>
+        </header>
+        <ul id="readingBooksList">
+          {books.map(
+            (book) =>
+              book.added && (
+                <li key={book.id} className="readingListElement">
+                  <img
+                    className="readingBooksImage"
+                    src={book.cover}
+                    alt={book.title}
+                    onClick={() => handleUncheckBook(book.id)}
+                  />
+                </li>
+              )
+          )}
+        </ul>
+      </article>
+    </section>
   );
 };

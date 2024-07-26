@@ -74,15 +74,13 @@ export const AvailableBooksList = () => {
   return (
     <section id="enableBooksSection">
       <article>
-        <header>
-          <h2>Lista de Libros Disponibles</h2>
-          <p>{availableBooksCounter} libros disponibles</p>
-          <p>{readingListCounter} libros en la lista de lectura</p>
-          <p>
-            {availableBooksForGenreCounter} libros disponibles con el género
-            seleccionado
+        <header className="headerContainer">
+          <h1 className="headerContainerItems" id="giantText">{availableBooksCounter} libros disponibles</h1>
+          <p className="headerContainerItems">{readingListCounter} en la lista de lectura</p>
+          <p className="headerContainerItems">
+            {availableBooksForGenreCounter} libros disponibles del género
           </p>
-          <div>
+          <div className="headerContainerItems" id="inputGenre">
             <datalist id="genre">
               <option value="Fantasía"></option>
               <option value="Ciencia ficción"></option>
@@ -95,8 +93,9 @@ export const AvailableBooksList = () => {
               name="genre"
               list="genre"
               onChange={handleSetGenre}
-            />
+              />
           </div>
+              {/* <h2>Lista de Libros Disponibles</h2> */}
         </header>
         <ul id="enableBooksList">
           {/* Renderizado de los libros según el género seleccionado. */}

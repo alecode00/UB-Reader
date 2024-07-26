@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { PropTypes } from "prop-types";
-import library from "../../public/library.json";
+import library from "../../public/books.json";
 
 //Creando el contexto
 const DataContext = createContext();
@@ -14,8 +14,8 @@ const initialReadingListCounter =
 const initialAvailableBooksForGenreCounter =
   JSON.parse(localStorage.getItem("availableBooksForGenreCounter")) || 0;
 
-  /* //Utilizando BroadcastChannel para la comunicación entre las dos pestañas iguales requeridas
-  const channel = new BroadcastChanel('booksChannel'); */
+//Utilizando BroadcastChannel para la comunicación entre las dos pestañas iguales requeridas
+const channel = new BroadcastChannel("booksChannel");
 
 export const DataProvider = ({ children }) => {
   DataProvider.propTypes = {
@@ -55,28 +55,72 @@ export const DataProvider = ({ children }) => {
   const handleBooks = (newBooks) => {
     setBooks(newBooks);
   };
+  //Escuchando mensajes de otra página y asignando los valores recibidos
+  channel.onmessage = (event) => {
+    const data = event.data;
+    console.log(event.data);
+    console.log("Escuche un evento");
 
-  // Varios useEffect creados para guardar en el localStorage la información que necesite persistencia en el monento que varíen
+    switch (data.variable) {
+      case "books":
+        setBooks(data.valor);
+        break;
+
+      case "availableBooksCounter":
+        setAvailableBooksCounter(data.valor);
+        break;
+
+      case "readingListCounter":
+        setReadingListCounter(data.valor);
+        break;
+
+      case "availableBooksForGenreCounter":
+        setAvailableBooksForGenreCounter(data.valor);
+        break;
+
+      default:
+        console.log("Tipo de dato desconocido", data.variable);
+        break;
+    }
+  };
+
+  // Varios useEffect creados para guardar en el localStorage la información que necesite persistencia en el monento que varíen. Y enviarla hacia una posible segunda ventana para tenerla actualizada.
   useEffect(() => {
     localStorage.setItem("books", JSON.stringify(books));
+    channel.postMessage({ variable: "books", valor: books });
   }, [books]);
+
   useEffect(() => {
     localStorage.setItem(
       "availableBooksCounter",
       JSON.stringify(availableBooksCounter)
     );
+    channel.postMessage({
+      variable: "availableBooksCounter",
+      valor: availableBooksCounter,
+    });
   }, [availableBooksCounter]);
+
   useEffect(() => {
     localStorage.setItem(
       "readingListCounter",
       JSON.stringify(readingListCounter)
     );
+    channel.postMessage({
+      variable: "readingListCounter",
+      valor: readingListCounter,
+    });
   }, [readingListCounter]);
+
   useEffect(() => {
     localStorage.setItem(
       "availableBooksForGenreCounter",
       JSON.stringify(availableBooksForGenreCounter)
     );
+    channel.postMessage({
+      variable: "availableBooksForGenreCounter",
+      valor: availableBooksForGenreCounter,
+    });
   }, [availableBooksForGenreCounter]);
 
   //Los datos que se compartirán con el resto de los componentes
