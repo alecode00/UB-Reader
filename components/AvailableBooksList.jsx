@@ -21,6 +21,7 @@ export const AvailableBooksList = () => {
   const handleSetGenre = (e) => {
     setGenre(e.target.value);
   };
+  
 
   //useEffect utilizado para poder tener el contador de libros disponibles teniendo en cuenta el género
   useEffect(() => {
@@ -104,7 +105,7 @@ export const AvailableBooksList = () => {
               return (
                 <li key={book.id} className="availableListElement">
                   <img
-                    className="availableBooksImage"
+                    className={book.added? "availableBooksImageAdded":"availableBooksImageUnAdded"}
                     src={book.cover}
                     alt={book.title}
                     onClick={() => handleBookClick(book.id)}
@@ -116,7 +117,7 @@ export const AvailableBooksList = () => {
                 return (
                   <li key={book.id} className="availableListElement">
                     <img
-                      className="availableBooksImage"
+                      className={book.added? "availableBooksImageAdded":"availableBooksImageUnAdded"}
                       src={book.cover}
                       alt={book.title}
                       onClick={() => handleBookClick(book.id)}

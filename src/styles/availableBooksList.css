@@ -1,4 +1,9 @@
-.availableBooksImage {
+.availableBooksImageAdded {
+  width: 10vw;
+  height: 22vh;
+  opacity: 0.5;
+}
+.availableBooksImageUnAdded {
   width: 10vw;
   height: 22vh;
 }
