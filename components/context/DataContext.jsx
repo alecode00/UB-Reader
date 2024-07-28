@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { PropTypes } from "prop-types";
 import library from "../../public/books.json";
+import { isEqual } from "lodash";
 
 //Creando el contexto
 const DataContext = createContext();
@@ -13,11 +14,13 @@ const initialReadingListCounter =
   JSON.parse(localStorage.getItem("readingListCounter")) || 0;
 const initialAvailableBooksForGenreCounter =
   JSON.parse(localStorage.getItem("availableBooksForGenreCounter")) || 0;
+const initialGenre = JSON.parse(localStorage.getItem("genre")) || "";
 
 //Utilizando BroadcastChannel para la comunicación entre las dos pestañas iguales requeridas
 const channel = new BroadcastChannel("booksChannel");
 
 export const DataProvider = ({ children }) => {
+  //Al no usar TS se declara el tipo de variable que recibe el componente
   DataProvider.propTypes = {
     children: PropTypes.element,
   };
@@ -55,33 +58,12 @@ export const DataProvider = ({ children }) => {
   const handleBooks = (newBooks) => {
     setBooks(newBooks);
   };
-  //Escuchando mensajes de otra página y asignando los valores recibidos
-  channel.onmessage = (event) => {
-    const data = event.data;
-    console.log(event.data);
-    console.log("Escuche un evento");
 
-    switch (data.variable) {
-      case "books":
-        setBooks(data.valor);
-        break;
-
-      case "availableBooksCounter":
-        setAvailableBooksCounter(data.valor);
-        break;
-
-      case "readingListCounter":
-        setReadingListCounter(data.valor);
-        break;
-
-      case "availableBooksForGenreCounter":
-        setAvailableBooksForGenreCounter(data.valor);
-        break;
-
-      default:
-        console.log("Tipo de dato desconocido", data.variable);
-        break;
-    }
+  //Género seleccionado por el usuario para filtrar
+  const [genre, setGenre] = useState(initialGenre);
+  //Función manejadora para setear el género
+  const handleSetGenre = (e) => {
+    setGenre(e.target.value);
   };
 
   // Varios useEffect creados para guardar en el localStorage la información que necesite persistencia en el monento que varíen. Y enviarla hacia una posible segunda ventana para tenerla actualizada.
@@ -123,6 +105,52 @@ export const DataProvider = ({ children }) => {
     });
   }, [availableBooksForGenreCounter]);
 
+  useEffect(() => {
+    localStorage.setItem("genre", JSON.stringify(genre));
+    channel.postMessage({
+      variable: "genre",
+      valor: genre,
+    });
+  }, [genre]);
+
+  //Escuchando mensajes de otra página y asignando los valores recibidos
+  channel.onmessage = (event) => {
+    const data = event.data;
+
+    switch (data.variable) {
+      case "books":
+        if (isEqual(books, data.valor)) {
+          break;
+        } else {
+          setBooks(
+            data.valor.map((book) => {
+              return { ...book };
+            })
+          );
+          break;
+        }
+
+      case "availableBooksCounter":
+        setAvailableBooksCounter(data.valor);
+        break;
+
+      case "readingListCounter":
+        setReadingListCounter(data.valor);
+        break;
+
+      case "availableBooksForGenreCounter":
+        setAvailableBooksForGenreCounter(data.valor);
+        break;
+      case "genre":
+        setGenre(data.valor);
+        break;
+
+      default:
+        console.error("Tipo de dato desconocido", data.variable);
+        break;
+    }
+  };
+
   //Los datos que se compartirán con el resto de los componentes
   const data = {
     books,
@@ -133,6 +161,8 @@ export const DataProvider = ({ children }) => {
     handleSetReadingListCounter,
     availableBooksForGenreCounter,
     handleSetAvailableBooksForGenreCounter,
+    genre,
+    handleSetGenre,
   };
   //Define que se compartirá data con los hijos
   return <DataContext.Provider value={data}>{children}</DataContext.Provider>;

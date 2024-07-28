@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import "../src/styles/availableBooksList.css";
 import DataContext from "./context/DataContext";
 
@@ -13,14 +13,9 @@ export const AvailableBooksList = () => {
     handleSetReadingListCounter,
     availableBooksForGenreCounter,
     handleSetAvailableBooksForGenreCounter,
+    genre,
+    handleSetGenre,
   } = useContext(DataContext);
-
-  //Género seleccionado por el usuario para filtrar
-  const [genre, setGenre] = useState("");
-  //Función manejadora para setear el género
-  const handleSetGenre = (e) => {
-    setGenre(e.target.value);
-  };
 
   //useEffect utilizado para poder tener el contador de libros disponibles teniendo en cuenta el género
   useEffect(() => {
@@ -96,6 +91,7 @@ export const AvailableBooksList = () => {
               type="text"
               name="genre"
               list="genre"
+              value={genre}
               onChange={handleSetGenre}
             />
           </div>
